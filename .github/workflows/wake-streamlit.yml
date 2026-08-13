@@ -24,3 +24,5 @@ jobs:
 
       - name: Run wake-up script
         run: python wake_up.py
+      - name: Prevent 60-day GitHub Actions Timeout
+        uses: gautamkrishnar/keepalive-workflow@v2
