@@ -6,6 +6,7 @@ on:
   workflow_dispatch:
 permissions:
   actions: write
+  contents: write
 jobs:
   wake-app:
     runs-on: ubuntu-latest
@@ -26,4 +27,8 @@ jobs:
       - name: Run wake-up script
         run: python wake_up.py
       - name: Prevent 60-day GitHub Actions Timeout
-        uses: gautamkrishnar/keepalive-workflow@v2
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git commit --allow-empty -m "Keepalive dummy commit"
+          git push
